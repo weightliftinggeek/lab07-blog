@@ -1,19 +1,24 @@
 const path = require('path');
-const Sequelize = require('sequelize').default;
+const Sequelize = require('sequelize');
 
 // Load our database configuration
-const dbconfig = require('../config/database');
+const dbConfig = require('../config/database');
 
 // Connect Sequelize to the database
-const sequelize = new Sequelize(dbConfig.database, dbconfig.user, dbConfig.password, dbconfig);
+const sequelize = new Sequelize(dbConfig.database, dbConfig.user,
+  dbConfig.password, dbConfig);
 
 // Load all of our model definitions
-const models = {
-   Post: sequelize.import(require.resolve('./post'))
-};
 
-// Store the database connection 
+const models = {
+   Post: sequelize.import(require.resolve('./post')),
+ };
+
+// Store the database connection
 models.database = sequelize;
 
-// Export our model definitions 
-module.exports = models;	
+// Set up associations
+
+
+// Export our model definitions
+module.exports = models;

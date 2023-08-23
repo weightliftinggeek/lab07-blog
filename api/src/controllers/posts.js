@@ -25,11 +25,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // Create a new post record in the database
   models.Post.create(postFilter(req.body))
-    .then(post => post.createComment({name: 'Joe', content: 'First!'})
-      .then(() => post))
-    .then(post => res.json(post))
-    .catch(err => res.status(422).json({ error: err.message }));
-});
+   .then(post => res.json(post))
+   .catch(err => res.status(422).json({ error: err.message }));
+ });
 
 // Show
 router.get('/:postId', (req, res) => {
